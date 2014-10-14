@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: Fred
+  email: fred@example.com
+  password_digest: $2a$10$WodmNomJaNCHPEmde6CTgOAd2J6qmI4Z.CAv8Cjcdg/e7OX0OYvqO
+
+two:
+  username: Bob
+  email: bob@example.com
+  password_digest: $2a$10$WodmNomJaNCHPEmde6CTgOAd2J6qmI4Z.CAv8Cjcdg/e7OX0OYvqO
