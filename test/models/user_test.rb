@@ -54,6 +54,14 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
+  test 'usernames should be saved as lowercase' do
+    username = 'SaMWISEGamGeE'
+    @user.username = username
+    @user.save
+
+    assert_equal username.downcase, @user.reload.username
+  end
+
   test 'email validation should accept valid addresses' do
     valid_addresses = %w[user@example.com user@foo.COM u_se-r@foo.bar.org
                          first.last@domain.jp alice+bob@baz.cn]
@@ -65,7 +73,7 @@ class UserTest < ActiveSupport::TestCase
 
   test 'email validation should reject invalid addresses' do
     invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
-                           foo@bar_baz.com foo@bar+baz.com]
+                           foo@bar_baz.com foo@bar+baz.com foo@foo..com]
     invalid_addresses.each do |address|
       @user.email = address
       assert_not @user.valid?
@@ -80,6 +88,14 @@ class UserTest < ActiveSupport::TestCase
     @user.save
 
     assert_not duplicate_user.valid?
+  end
+
+  test 'email addresses should be saved as lowercase' do
+    email = 'FoO@eXamPLE.cOM'
+    @user.email = email
+    @user.save
+
+    assert_equal email.downcase, @user.reload.email
   end
 
   test 'password should have a minimum length' do
