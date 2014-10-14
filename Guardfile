@@ -1,12 +1,12 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-guard 'migrate' do
+guard :migrate, test_clone: true do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')
 end
 
-guard :minitest do
+guard :minitest, spring: true do
   # Rails 4
   watch(%r{^app/(.+)\.rb$})                               { |m| "test/#{m[1]}_test.rb" }
   watch(%r{^app/controllers/application_controller\.rb$}) { 'test/controllers' }
